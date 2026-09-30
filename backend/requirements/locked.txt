@@ -1,0 +1,9 @@
+# Environment verified with Python 3.12.14 on Windows.
+Django==5.2.17
+djangorestframework==3.16.1
+mysqlclient==2.2.8
+python-dotenv==1.2.3
+asgiref==3.12.1
+sqlparse==0.6.0
+tzdata==2026.4
+ruff==0.16.9

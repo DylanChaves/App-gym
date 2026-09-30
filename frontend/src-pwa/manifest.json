@@ -1,0 +1,13 @@
+{
+  "id": "/",
+  "description": "Acceso al gimnasio y gestión de clientes",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "background_color": "#f4f7f6",
+  "theme_color": "#145d4e",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

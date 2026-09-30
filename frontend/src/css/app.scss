@@ -1,0 +1,109 @@
+body {
+  background: #f4f7f6;
+  color: #172a26;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+}
+.page-content {
+  max-width: 1180px;
+  margin: auto;
+  padding: 32px;
+}
+.page-title {
+  font-size: clamp(1.7rem, 4vw, 2.25rem);
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+.page-subtitle {
+  color: #526760;
+  margin: 0 0 28px;
+}
+.surface {
+  border: 1px solid #dde6e2;
+  border-radius: 18px;
+  background: white;
+  box-shadow: none;
+}
+.q-btn {
+  min-height: 44px;
+}
+.q-field {
+  min-width: 0;
+}
+.q-focus-helper {
+  opacity: 0.12;
+}
+a {
+  color: #145d4e;
+}
+:focus-visible {
+  outline: 3px solid #256997;
+  outline-offset: 3px;
+}
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+}
+.muted {
+  color: #526760;
+}
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.auth-story {
+  background: #145d4e;
+  color: white;
+  padding: clamp(32px, 6vw, 88px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.auth-story h1 {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1.08;
+  font-weight: 700;
+  margin: 36px 0 24px;
+}
+.auth-form-area {
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #c5de8b;
+  color: #145d4e;
+}
+@media (max-width: 767px) {
+  .page-content {
+    padding: 22px 16px;
+  }
+  .auth-page {
+    display: block;
+  }
+  .auth-story {
+    padding: 24px;
+  }
+  .auth-story h1 {
+    font-size: 2rem;
+    margin: 20px 0 12px;
+  }
+  .auth-story .desktop-copy {
+    display: none;
+  }
+  .auth-form-area {
+    padding: 28px 20px;
+  }
+}

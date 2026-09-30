@@ -1,0 +1,8 @@
+.git
+.venv
+.local
+**/.env
+**/node_modules
+**/dist
+**/.quasar
+**/__pycache__

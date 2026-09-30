@@ -1,0 +1,48 @@
+name: Verificaciones
+on: [push, pull_request]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0.43
+        env:
+          MYSQL_ROOT_PASSWORD: ci-test-only
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    env:
+      DJANGO_SECRET_KEY: ci-only-synthetic-key-never-production-2384
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ci-test-only
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: gym_ci
+      MYSQL_TEST_DATABASE: gym_ci_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y default-libmysqlclient-dev pkg-config
+      - run: pip install -r backend/requirements/locked.txt
+      - run: mysql --protocol=tcp -h 127.0.0.1 -uroot -e "CREATE DATABASE gym_ci CHARACTER SET utf8mb4"
+        env:
+          MYSQL_PWD: ci-test-only
+      - run: python -m ruff check backend
+      - run: python manage.py check --database default && python manage.py migrate --noinput && python manage.py makemigrations --check --dry-run && python manage.py test --settings=config.settings.test --noinput
+        working-directory: backend
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint && npm run typecheck && npm test && npm run build && npm run build:pwa
